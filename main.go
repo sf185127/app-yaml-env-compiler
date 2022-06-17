@@ -31,7 +31,7 @@ func main() {
 	fmt.Println(fmt.Sprintf("Env variables will be replaced: %v",mapResult["env_variables"]))
 
 	for k, any := range mapResult {
-		if k == "env_variables" {
+		if k == "env_variables" || k == "build_env_variables" {
 			err := checkIsPointer(&any)
 			if err != nil {
 				panic(err)
@@ -56,6 +56,7 @@ func main() {
 	}
 	
 	fmt.Println(fmt.Sprintf("Compiled env variables: %v", mapResult["env_variables"]))
+	fmt.Println(fmt.Sprintf("Compiled build env variables: %v", mapResult["build_env_variables"]))
 
 	out, err := yaml.Marshal(mapResult)
 	// write the whole body at once
