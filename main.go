@@ -47,7 +47,11 @@ func main() {
 					envVal := iv.(string)
 
 					env := strings.Replace(strings.TrimSpace(envVal), "$", "", -1)
-					envMap[envName] = os.Getenv(env)
+					osVal := os.Getenv(env)
+					
+					if len(osVal) > 0 {
+						envMap[envName] = osVal
+					}
 				}
 			default:
 				panic(fmt.Sprintf("This is not supposed to happen, but if it does, good luck"))
