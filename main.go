@@ -32,7 +32,7 @@ func main() {
 	fmt.Println(fmt.Sprintf("Env variables will be replaced: %v",mapResult["env_variables"]))
 
 	for k, any := range mapResult {
-		if k == "service" && len(service) == 0 {
+		if k == "service" && len(service) != 0 {
 			mapResult[k] = service
 			fmt.Println(fmt.Sprintf("Service set to \"%v\"",service))
 		}
