@@ -14,6 +14,7 @@ import (
 func main() {
 	fmt.Println("Ready to compile ...")
 	fileNameString := os.Getenv("INPUT_APPYAMLPATH")
+	service := os.Getenv("INPUT_SERVICE")
 	fmt.Println("Using " + fileNameString)
 	filename, _ := filepath.Abs(fileNameString)
 	
@@ -31,6 +32,11 @@ func main() {
 	fmt.Println(fmt.Sprintf("Env variables will be replaced: %v",mapResult["env_variables"]))
 
 	for k, any := range mapResult {
+		if k == "service" && service != nil {
+			mapResult[k] = service
+			fmt.Println(fmt.Sprintf("Service set to \"%v\"",service))
+		}
+
 		if k == "env_variables" || k == "build_env_variables" {
 			err := checkIsPointer(&any)
 			if err != nil {
