@@ -11,3 +11,7 @@ inputs:
     description: 'The path of the app.yaml file'
     required: false
     default: 'app.yaml'
+  appyamlpath:
+    description: 'The service to set the app.yaml to'
+    required: false
+    default: null
